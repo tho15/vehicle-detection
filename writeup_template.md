@@ -20,19 +20,19 @@ To capture the color and shape of car objects in a image, we use three feature s
 To determine which color space can provide better feature to identify a vehicle object, I randomly select 1000 images separately from traing car/not-car images, and plot their historgram for each channels in different color spaces (RGB, HLS, HSV, and YCbCr).
 
 **RGB color space histogram**
-![RGB color space histogram][output_images/hist_rgb.png]
+![RGB color space histogram](output_images/hist_rgb.png)
 
 **HLS color space histogram**
-![HLS color space histogram][output_images/hist_hls.png]
+![HLS color space histogram](output_images/hist_hls.png)
 
 **HSV color space histogram**
-![HSV color space histogram][output_images/hist_hsv.png]
+![HSV color space histogram](output_images/hist_hsv.png)
 
 **HSV color space histogram**
-![HSV color space histogram][output_images/hist_hsv.png]
+![HSV color space histogram](output_images/hist_hsv.png)
 
 **YCrCb color space histogram**
-![YCrCb color space histogram][output_images/hist_ycrcb.png]
+![YCrCb color space histogram](output_images/hist_ycrcb.png)
 
 Compare to other color spaces, the YCrCb color space has a more compact structure. We can see that statistically it is easier to differentiate the vehicle and not-vehicle from Cr and Cb channels. We would also check the HOG feature space to determine which color space is a better choice.
 
@@ -41,16 +41,16 @@ Compare to other color spaces, the YCrCb color space has a more compact structur
 To find out which color space is prefered for HOG feature, we use **'skimage.hog()'** and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`to show the hog images of a random car image.
 
 **RGB Hog feature images**
-![RGB Hog feature images][output_images/hog_images_rgb.png]
+![RGB Hog feature images](output_images/hog_images_rgb.png)
 
 **HLS Hog feature images**
-![HLS Hog feature images][output_images/hog_images_hls.png]
+![HLS Hog feature images](output_images/hog_images_hls.png)
 
 **HSV Hog feature images**
-![HSV Hog feature images][output_images/hog_images_hsv.png]
+![HSV Hog feature images](output_images/hog_images_hsv.png)
 
 **YCrCb Hog feature images**
-![YCrCb Hog feature images][output_images/hog_images_ycrcb.png]
+![YCrCb Hog feature images](output_images/hog_images_ycrcb.png)
 
 Visually we can see there are less overlop in all three channel Hog images in YCrCb and RGB color space. Combine what we find in color histogram plots, YCrCb seems to be a prefer color space to use. Testing the classifier with different color spaces also confirm we get best result from YCrCb color space.
 
@@ -90,7 +90,7 @@ To find the best hyper-parameter for SVM classifier, I test the classifier with 
 
 The training dataset provided for this project from KITTI and GTI are used for training. Following show some sample images from the dataset.
 
-![Sample Images][output_images/car_notcar_images]
+![Sample Images](output_images/car_notcar_images.png)
 
 
 ### Sliding Window Search
@@ -105,12 +105,12 @@ At the beginning I used single scale window and tested with different overlap fr
 
 Following image shows the locations of a search windows (window size (96, 96)):
 
-![Search Windows][output_images/sliding_win.png]
+![Search Windows](output_images/sliding_win.png)
 
 Following shows example result images from window search:
 
-![Search result image1][output_images/test6_win.png]
-![Search result image2][output_images/sl2_image_wins.png]
+![Search result image1](output_images/test6_win.png)
+![Search result image2](output_images/sl2_image_wins.png)
 
 The sliding window search is implemented in function 'detect_cars' in **'main.py'**
 
@@ -128,19 +128,19 @@ Here is the steps I used to handle false positives and multiple overlapping boun
 
 Following show the example of images and their comressponding heatmaps:
 
-![heat map test6][output_images/test6_heat.png]
-![heat map sl][output_images/sl2_image_heat.png]
+![heat map test6](output_images/test6_heat.png)
+![heat map sl](output_images/sl2_image_heat.png)
 
 
 Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap:
 
-![label test6][output_images/test6_labelbox.png]
-![label sl][output_images/sl2_image_labelbox.png]
+![label test6](output_images/test6_labelbox.png)
+![label sl](output_images/sl2_image_labelbox.png)
 
 Following shows the resulting bounding boxes are drawn onto the last two images:
 
-![detected box1][output_images/test6_cars.png]
-![detected box2][output_images/sl2_cars.png]
+![detected box1](output_images/test6_cars.png)
+![detected box2](output_images/sl2_cars.png)
 
 
 Here is a link to my final video output:
