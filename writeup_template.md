@@ -38,7 +38,7 @@ Compare to other color spaces, the YCrCb color space has a more compact structur
 
 #### Histogram of Oriented Gradients (HOG)
 
-To find out which color space is prefered for HOG feature, we use **'skimage.hog()'** and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`to show the hog images of a random car image.
+To find out which color space is prefered for HOG feature, we use **`skimage.hog()`** and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`to show the hog images of a random car image.
 
 **RGB Hog feature images**
 ![RGB Hog feature images](output_images/hog_images_rgb.png)
@@ -54,7 +54,7 @@ To find out which color space is prefered for HOG feature, we use **'skimage.hog
 
 Visually we can see there are less overlop in all three channel Hog images in YCrCb and RGB color space. Combine what we find in color histogram plots, YCrCb seems to be a prefer color space to use. Testing the classifier with different color spaces also confirm we get best result from YCrCb color space.
 
-The code for HOG feature extraction is implemented in function 'get_hog_features' in 'utils.py' file.
+The code for HOG feature extraction is implemented in function `get_hog_features` in `utils.py` file.
 
 ### Feature parameters
 
@@ -73,20 +73,20 @@ To determination the best parameters, I trained the classifier on various parame
 	2. Pixel per Cell: 8, 16
 	3. Cells per Block: 2, 4
 	
-The parameters we use in our final submission are (see **'main.py'**):
+The parameters we use in our final submission are (see **`main.py`**):
 
-* Spatial Bining Dimensions 'spatial_size=(32, 32)'
-* Histogram Bin Number: 'hist_bins = 32'
+* Spatial Bining Dimensions `spatial_size=(32, 32)`
+* Histogram Bin Number: `hist_bins = 32`
 * HOG parameters:
-	1. 'orient=9'
-	2. 'pix_per_cell = 8'
-	3. 'cell_per_block = 2'
+	1. `orient=9`
+	2. `pix_per_cell = 8`
+	3. `cell_per_block = 2`
 
 ## SVM Classifier
 
 I choose to use linear SVM classifier for vehicle tracking. This is due to the concern of speed. While using RBF SVM gives higer classification accuracy, it runs much slower. Linear SVM provides reasonable trade-off of accuracy and runing time.
 
-To find the best hyper-parameter for SVM classifier, I test the classifier with different C values '(0.1, 0.5, 0.8, 1.0, 1.2)'. The optimized C value from our testing is 'C=0.1'. Not only it gives good accuarcy, the SVM classifier with 'C=0.1' results less false positive detection. The SVM classifier is implemented in function 'train_features' in **'main.py'**.
+To find the best hyper-parameter for SVM classifier, I test the classifier with different C values `(0.1, 0.5, 0.8, 1.0, 1.2)`. The optimized C value from our testing is `C=0.1`. Not only it gives good accuarcy, the SVM classifier with `C=0.1` results less false positive detection. The SVM classifier is implemented in function `train_features` in **`main.py`**.
 
 The training dataset provided for this project from KITTI and GTI are used for training. Following show some sample images from the dataset.
 
@@ -97,11 +97,11 @@ The training dataset provided for this project from KITTI and GTI are used for t
 
 The sliding window search algorithm convolves a small window to extract image patches for classifer to identify the object. The size of window and how much overlap between two windows are parameters need to be optimized.
 
-At the beginning I used single scale window and tested with different overlap from 0.6 - 0.85 to find the best overlap. Then I tried to improve the result by adding different size of window in search. I found the window size '(96, 96)' with 0.75 overlap gives best result so far for single window search. Ultimately  I use two scales search with following parameters:
+At the beginning I used single scale window and tested with different overlap from 0.6 - 0.85 to find the best overlap. Then I tried to improve the result by adding different size of window in search. I found the window size `(96, 96)` with 0.75 overlap gives best result so far for single window search. Ultimately  I use two scales search with following parameters:
 
-* Window size '(64, 64)' and '(96, 96)'
-* Overlap '(0.75, 0.75)'
-* 'xy_start_stop = (400, 656)'
+* Window size `(64, 64)` and `(96, 96)`
+* Overlap `(0.75, 0.75)`
+* `xy_start_stop = (400, 656)`
 
 Following image shows the locations of a search windows (window size (96, 96)):
 
@@ -112,7 +112,7 @@ Following shows example result images from window search:
 ![Search result image1](output_images/test6_win.png)
 ![Search result image2](output_images/sl2_image_wins.png)
 
-The sliding window search is implemented in function 'detect_cars' in **'main.py'**
+The sliding window search is implemented in function `detect_cars` in **`main.py`**
 
 ### Video Implementation
 
@@ -123,7 +123,7 @@ Here is the steps I used to handle false positives and multiple overlapping boun
 * Recorded the positions of positive detections in each frame of the video
 * From the positive detections I created a heatmap.
 * Combine the last 20 frames of heapmap and threaholded the map to identify vehicle positions.
-* Used 'scripy.ndimage.measurements.label()' to identify individual blobs in the heatmap.
+* Used `scripy.ndimage.measurements.label()` to identify individual blobs in the heatmap.
 * Assume each blob corresponded to a vehicle and constructed bounding boxes to cover the area of each blob detected.
 
 Following show the example of images and their comressponding heatmaps:
