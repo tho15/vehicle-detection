@@ -19,19 +19,19 @@ To capture the color and shape of car objects in a image, we use three feature s
 
 To determine which color space can provide better features to identify a vehicle object, I randomly select 1000 images separately from traing car/not-car images, and plot their historgram for each channels in different color spaces (RGB, HLS, HSV, and YCbCr). Following images show the result:
 
-**RGB color space histogram**
+RGB color space histogram
 ![RGB color space histogram](output_images/hist_rgb.png)
 
-**HLS color space histogram**
+HLS color space histogram
 ![HLS color space histogram](output_images/hist_hls.png)
 
-**HSV color space histogram**
+HSV color space histogram
 ![HSV color space histogram](output_images/hist_hsv.png)
 
-**HSV color space histogram**
+HSV color space histogram
 ![HSV color space histogram](output_images/hist_hsv.png)
 
-**YCrCb color space histogram**
+YCrCb color space histogram
 ![YCrCb color space histogram](output_images/hist_ycrcb.png)
 
 Compare to other color spaces, the YCrCb color space has a more compact structure. We can see that it is easier to classify the vehicle and not-vehicle from Cr and Cb channels based on their histogram. In the following section, we also check the HOG feature in different color spaces to determine which color space could be a better choice.
@@ -40,19 +40,19 @@ Compare to other color spaces, the YCrCb color space has a more compact structur
 
 To find out which color space is prefered for HOG feature, we use **`skimage.hog()`** and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`to show the hog images of a random car image.
 
-**RGB Hog feature images**
+RGB Hog feature images
 ![RGB Hog feature images](output_images/hog_images_rgb.png)
 
-**HLS Hog feature images**
+HLS Hog feature images
 ![HLS Hog feature images](output_images/hog_images_hls.png)
 
-**HSV Hog feature images**
+HSV Hog feature images
 ![HSV Hog feature images](output_images/hog_images_hsv.png)
 
-**YCrCb Hog feature images**
+YCrCb Hog feature images
 ![YCrCb Hog feature images](output_images/hog_images_ycrcb.png)
 
-Visually we can see there are less overlop in all three channels' Hog images in YCrCb and RGB color space. Combine what we find in color histogram plots, YCrCb seems to be a prefer color space to use. Testing the classifier with different color spaces also confirms we get best result from YCrCb color space.
+Visually we can see there are less overlop in all three channels' Hog images in both YCrCb and RGB color space. Combine what we have found in color histogram plots, YCrCb seems to be a prefer color space to use. Testing the classifier with different color spaces also confirms we get best result from YCrCb color space.
 
 The code for HOG feature extraction is implemented in function `get_hog_features` in `utils.py` file.
 
