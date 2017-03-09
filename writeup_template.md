@@ -58,21 +58,12 @@ The code for HOG feature extraction is implemented in function `get_hog_features
 
 ### Feature parameters
 
-To determination the best parameters, I trained the classifier on various parameter combinations. Following list the parameter options I have tested and the final parameters we choose for this project based on the trade-off of accuarcy and running time:
+To determination the best parameters, I trained the classifier on various parameter combinations. Following table lists the parameter options I have tested and the final parameters we choose for this project based on the trade-off of accuarcy and running time:
 
-* Spatial Bining Dimemsions
-	1. (16, 16)
-	2. (32, 32)
+| Spatial Bining Dimemsions | Histogram Bin Number | HOG Orient | HOG Pixel per Cell | HOG Cells per Block
+| --------------------------| -------------------- | ---------- | .................. | -------------------
+| (16, 16) (32, 32) | 16, 32 | 8, 9, 12, 16 | 8, 16 | 2, 4
 
-* Histogram Bin Number
-	1. 16
-	2. 32	
-
-* HOG parameters:
-	1. Orient: 8, 9, 12, 16
-	2. Pixel per Cell: 8, 16
-	3. Cells per Block: 2, 4
-	
 The parameters we use in our final submission are (see **`main.py`**):
 
 * Spatial Bining Dimensions `spatial_size=(32, 32)`
