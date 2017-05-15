@@ -143,7 +143,7 @@ Here is a [link](https://youtu.be/VwN4QoCyFlQ) to my final video output:
 </p>
 
 
-###Discussion
+### Discussion
 
 The HOG-SVM technique impelmented in this project works resonable well on detecting vehicles in our test videos. One major issue of this technique is the performance. It takes more then 3 seconds to handle one frame. This is obviously not suitable for real-time application. Another issue related to our implementation is it some times fails to detect vehicle that becomes far away. Following lists some approaches I think can be tried to enhance the performance:
 
